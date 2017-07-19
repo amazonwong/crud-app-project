@@ -1,17 +1,41 @@
 # CRUD APP PROJECT
 
+# READ PRODUCTS CSV
+
+import csv
+
+products = []
+
+csv_file_path = "data/products.csv"
+
+with open(csv_file_path, "r") as csv_file:
+    reader = csv.DictReader(csv_file)
+    for row in reader:
+        products.append(row)
+
+#print("THERE ARE " + str(len(products)) + " PRODUCTS:")
+
+#products = sorted(products, key=operator.itemgetter('name'))
+
+#for product in products:
+    #price_usd = ' (${0:.2f})'.format(product["price"])
+    #print(" + " + product["name"] + price_usd)
+
+
 menu = """
     Hi.
 
     Welcome to the products app.
 
-    There are 100 products.
+    There are {0} products.
 
     Available operations: 'List', 'Show', 'Create', 'Update', 'Destroy'
 
     Please choose an operation:
 
-"""
+""".format(len(products))
+
+print(menu)
 
 chosen_operation = input(menu)
 chosen_operation = chosen_operation.title()
@@ -47,22 +71,6 @@ else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
 #print("-------------------------------")
 #print("Welcome @amazonwong")
 
-
-import csv
-
-csv_file_path = "data/products.csv"
-
-with open(csv_file_path, "r") as csv_file:
-    reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
-    #for row in reader:
-
-    print("THERE ARE " + str(len(products)) + " PRODUCTS:")
-
-products = sorted(products, key=operator.itemgetter('name'))
-
-for product in products:
-    price_usd = ' (${0:.2f})'.format(product["price"])
-    print(" + " + product["name"] + price_usd)
 
     #writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
     #writer.writeheader() # uses fieldnames set above
