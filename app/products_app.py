@@ -14,39 +14,55 @@ menu = """
 """
 
 chosen_operation = input(menu)
+chosen_operation = chosen_operation.title()
 
-if chosen_operation.title() == "List":
+def list_product():
     print("LISTING PRODUCTS")
-elif chosen_operation.title() == "Show":
-    print("SHOWING A PRODUCT")
-elif chosen_operation.title() == "Create":
-    print("CREATING A PRODUCT")
-elif chosen_operation.title() == "Update":
-    print("UPDATING A PRODUCT")
-elif chosen_operation.title() == "Destroy":
-    print("DESTROYING A PRODUCT")
-else:
-    print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
 
-print("-------------------------------")
-print("PRODUCTS APPLICATION")
-print("-------------------------------")
-print("Welcome @amazonwong")
+def show_product():
+    print("SHOWING PRODUCTS")
 
-#file_name = "products.csv" # refers to a file path relative to the path from which you invoke your your script.
+def create_product():
+    print("CREATING PRODUCTS")
 
-#with open(file_name, "r") as file: # NOTE: "r" means "open the file for reading"
-    #contents = file.read()
-    #print(contents)
+def update_product():
+    print("UPDATING PRODUCTS")
 
-#import csv
+def destroy_product():
+    print("DESTROYING PRODUCTS")
 
-#csv_file_path = "products.csv"
 
-#with open(csv_file_path, "r") as csv_file:
-    #reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
+
+if chosen_operation == "List": list_product()
+elif chosen_operation == "Show": show_product()
+elif chosen_operation == "Create": create_product()
+elif chosen_operation == "Update": update_product
+elif chosen_operation == "Destroy": destroy_product
+else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
+
+
+
+#print("-------------------------------")
+#print("PRODUCTS APPLICATION")
+#print("-------------------------------")
+#print("Welcome @amazonwong")
+
+
+import csv
+
+csv_file_path = "data/products.csv"
+
+with open(csv_file_path, "r") as csv_file:
+    reader = csv.DictReader(csv_file) # assuming your CSV has headers, otherwise... csv.reader(csv_file)
     #for row in reader:
-        #print(row["id"], row["product"])
+
+    print("THERE ARE " + str(len(products)) + " PRODUCTS:")
+
+products = sorted(products, key=operator.itemgetter('name'))
+
+for product in products:
+    price_usd = ' (${0:.2f})'.format(product["price"])
+    print(" + " + product["name"] + price_usd)
 
     #writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
     #writer.writeheader() # uses fieldnames set above
