@@ -35,7 +35,20 @@ menu = """
 
 """.format(len(products))
 
-print(menu)
+
+# example of manipulating/changing the products list
+example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
+products.append(example_new_product)
+
+
+other_path = "data/other_products.csv"
+with open(other_path, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
+    writer.writeheader() # uses fieldnames set above
+    for product in products:
+        writer.writerow(product)
+
+
 
 chosen_operation = input(menu)
 chosen_operation = chosen_operation.title()
