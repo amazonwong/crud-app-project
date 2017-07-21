@@ -13,6 +13,26 @@ with open(csv_file_path, "r") as csv_file:
     for row in reader:
         products.append(row)
 
+print("\n" + "-------------------------------")
+print("PRODUCTS APPLICATION")
+print("-------------------------------")
+print("Welcome @amazonwong" + "\n")
+
+menu = """There are {0} products in the database. Please select an operation:
+
+    Operation  |  Description
+    ---------  |  -----------------
+    'List'     |  Display a list of product identifiers and name.
+    'Show'     |  Show information about a product.
+    'Create'   |  Add a new product.
+    'Update'   |  Edit an existing product.
+    'Destroy'  |  Delete an existing product.
+
+""".format(len(products))
+
+
+
+
 #print("THERE ARE " + str(len(products)) + " PRODUCTS:")
 
 #products = sorted(products, key=operator.itemgetter('name'))
@@ -22,31 +42,19 @@ with open(csv_file_path, "r") as csv_file:
     #print(" + " + product["name"] + price_usd)
 
 
-menu = """
-    Hi.
-
-    Welcome to the products app.
-
-    There are {0} products.
-
-    Available operations: 'List', 'Show', 'Create', 'Update', 'Destroy'
-
-    Please choose an operation:
-
-""".format(len(products))
 
 
 # example of manipulating/changing the products list
-example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
-products.append(example_new_product)
+#example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
+#products.append(example_new_product)
 
 
-other_path = "data/other_products.csv"
-with open(other_path, "w") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
-    writer.writeheader() # uses fieldnames set above
-    for product in products:
-        writer.writerow(product)
+#other_path = "data/other_products.csv"
+#with open(other_path, "w") as csv_file:
+    #writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
+    #writer.writeheader() # uses fieldnames set above
+    #for product in products:
+        #writer.writerow(product)
 
 
 
@@ -61,6 +69,20 @@ def show_product():
 
 def create_product():
     print("CREATING PRODUCTS")
+    product_id = input("id is:")
+    product_name = input("Hey what do you want to name the new product")
+    product_aisle = input("aisle is:")
+    product_department = input("department is:")
+    product_price = input("price is:")
+    new_product = {
+        "id": product_id,
+        "name": product_name,
+        "aisle": product_aisle,
+        "department": product_department,
+        "price": product_price
+    }
+    print("NEW PRODUCT IS", new_product)
+    products.append(new_product)
 
 def update_product():
     print("UPDATING PRODUCTS")
@@ -79,10 +101,6 @@ else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
 
 
 
-#print("-------------------------------")
-#print("PRODUCTS APPLICATION")
-#print("-------------------------------")
-#print("Welcome @amazonwong")
 
 
     #writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
