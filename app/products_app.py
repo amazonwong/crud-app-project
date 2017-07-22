@@ -44,12 +44,16 @@ with open(csv_file_path, "r") as csv_file:
 
 def list_product():
     print("""THERE ARE " + str(len(products)) "PRODUCTS:""")
-
     for product in products:
         print(product)
 
 def show_product():
-    print("SHOWING PRODUCTS")
+        product_id = input("OK. Please specify the product's identifier: ")
+        if product_id:
+            print("SHOWING A PRODUCT HERE!")
+        else:
+            product_ids.append(int(product_id))
+
 
 def create_product():
     print("CREATING PRODUCTS")
