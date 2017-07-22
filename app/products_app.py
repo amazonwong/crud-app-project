@@ -56,12 +56,12 @@ def show_product():
 
 
 def create_product():
-    print("CREATING PRODUCTS")
-    product_id = input("id is:")
-    product_name = input("Hey what do you want to name the new product")
-    product_aisle = input("aisle is:")
-    product_department = input("department is:")
-    product_price = input("price is:")
+    print("OK. Please specify the product's information...")
+    product_id = input("id:")
+    product_name = input("name:")
+    product_aisle = input("aisle:")
+    product_department = input("department:")
+    product_price = input("price:")
     new_product = {
         "id": product_id,
         "name": product_name,
@@ -69,14 +69,37 @@ def create_product():
         "department": product_department,
         "price": product_price
     }
-    print("NEW PRODUCT IS", new_product)
+    print("CREATING A NEW PRODUCT HERE!", new_product)
     products.append(new_product)
 
 def update_product():
-    print("UPDATING PRODUCTS")
+    product_id = input("OK. Please specify the product's identifier: ")
+    if product_id:
+        print("SHOWING A PRODUCT HERE!")
+    else:
+        product_ids.append(int(product_id))
 
+    print("OK. Please specify the product's information...")
+    product_id = input("id:")
+    product_name = input("name:")
+    product_aisle = input("aisle:")
+    product_department = input("department:")
+    product_price = input("price:")
+    new_product = {
+        "id": product_id,
+        "name": product_name,
+        "aisle": product_aisle,
+        "department": product_department,
+        "price": product_price
+    }
+    print("CREATING A NEW PRODUCT HERE!", new_product)
+    products.append(new_product)
 def destroy_product():
-    print("DESTROYING PRODUCTS")
+    product_id = input("OK. Please specify the product's identifier: ")
+    if product_id:
+        print("DESTROYING A PRODUCT HERE!")
+    else:
+        product_ids.append(int(product_id))
 
 
 
