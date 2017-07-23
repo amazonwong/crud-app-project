@@ -13,6 +13,9 @@ with open(csv_file_path, "r") as csv_file:
     for row in reader:
         products.append(row)
 
+def product_id(product):
+    return int(product["id"])
+
 print("\n" + "-------------------------------")
 print("PRODUCTS APPLICATION")
 print("-------------------------------")
@@ -133,18 +136,3 @@ else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
     #writer.writeheader() # uses fieldnames set above
     #for product in products:
         #writer.writerow(product)
-
-
-
-
-
-
-
-
-
-    #writer = csv.DictWriter(csv_file, fieldnames=["id", "name", "aisle", "department", "price"])
-    #writer.writeheader() # uses fieldnames set above
-    #writer.writerow({"city": "New York", "name": "Yankees"})
-    #writer.writerow({"city": "New York", "name": "Mets"})
-    #writer.writerow({"city": "Boston", "name": "Red Sox"})
-    #writer.writerow({"city": "New Haven", "name": "Ravens"})
