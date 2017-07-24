@@ -52,26 +52,14 @@ def create_product():
 
 def update_product():
     product_id = input("OK. Please specify the product's identifier: ")
-    if product_id:
-        print("SHOWING A PRODUCT HERE!")
+    product = [p for p in products if p["id"] == product_id][0]
+    if product:
+        print("OK. Please specify the product's information...")
+        for header in user_input_headers:
+            product[header] = input("Change '{0}' from '{1}' to: ".format(header, product[header]))
+        print("UPDATING A PRODUCT HERE!", product)
     else:
-        product_ids.append(int(product_id))
-
-    print("OK. Please specify the product's information...")
-    product_id = input("id:")
-    product_name = input("name:")
-    product_aisle = input("aisle:")
-    product_department = input("department:")
-    product_price = input("price:")
-    new_product = {
-        "id": product_id,
-        "name": product_name,
-        "aisle": product_aisle,
-        "department": product_department,
-        "price": product_price
-    }
-    print("CREATING A NEW PRODUCT HERE!", new_product)
-    products.append(new_product)
+        print("COULDN'T FIND A PRODUCT WITH THIS IDENTIFIER", product_id)
 
 def destroy_product():
     product_id = input("OK. Please specify the product's identifier: ")
