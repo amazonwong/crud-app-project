@@ -8,34 +8,21 @@ products = []
 
 csv_file_path = "data/products.csv"
 
+def get_product_id(product):
+    return int(product["id"])
+
+def auto_incremented_id():
+    product_ids = map(get_product_id, products)
+    return max(product_ids) + 1
+
+#
+# READ PRODUCTS FROM FILE
+#
+
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
         products.append(row)
-
-def product_id(product):
-    return int(product["id"])
-
-print("\n" + "-------------------------------")
-print("PRODUCTS APPLICATION")
-print("-------------------------------")
-print("Welcome @amazonwong" + "\n")
-
-menu = """There are {0} products in the database. Please select an operation:
-
-    Operation  |  Description
-    ---------  |  -----------------
-    'List'     |  Display a list of product identifiers and name.
-    'Show'     |  Show information about a product.
-    'Create'   |  Add a new product.
-    'Update'   |  Edit an existing product.
-    'Destroy'  |  Delete an existing product.
-
-""".format(len(products))
-
-chosen_operation = input(menu)
-chosen_operation = chosen_operation.title()
-
 products = []
 
 csv_file_path = "data/products.csv"
@@ -113,16 +100,29 @@ elif chosen_operation == "Update": update_product
 elif chosen_operation == "Destroy": destroy_product
 else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
 
+#
+# INTRO MENU
+#
 
-#print("THERE ARE " + str(len(products)) + " PRODUCTS:")
+print("\n" + "-------------------------------")
+print("PRODUCTS APPLICATION")
+print("-------------------------------")
+print("Welcome @amazonwong" + "\n")
 
-#products = sorted(products, key=operator.itemgetter('name'))
+menu = """There are {0} products in the database. Please select an operation:
 
-#for product in products:
-    #price_usd = ' (${0:.2f})'.format(product["price"])
-    #print(" + " + product["name"] + price_usd)
+    Operation  |  Description
+    ---------  |  -----------------
+    'List'     |  Display a list of product identifiers and name.
+    'Show'     |  Show information about a product.
+    'Create'   |  Add a new product.
+    'Update'   |  Edit an existing product.
+    'Destroy'  |  Delete an existing product.
 
+""".format(len(products))
 
+chosen_operation = input(menu)
+chosen_operation = chosen_operation.title()
 
 
 # example of manipulating/changing the products list
