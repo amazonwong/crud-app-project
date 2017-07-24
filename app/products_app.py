@@ -22,17 +22,6 @@ with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for ordered_dict in reader:
         products.append(dict(ordered_dict))
-        
-#
-# WRITE PRODUCTS TO FILE
-#
-
-with open(csv_file_path, "w") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=headers)
-    writer.writeheader()
-
-    for product in products:
-        writer.writerow(product)
 
 #
 # USER INPUT FUNCTIONS
@@ -107,6 +96,17 @@ chosen_operation = chosen_operation.title()
 if chosen_operation == "List": list_product()
 elif chosen_operation == "Show": show_product()
 elif chosen_operation == "Create": create_product()
-elif chosen_operation == "Update": update_produc()
+elif chosen_operation == "Update": update_product()
 elif chosen_operation == "Destroy": destroy_product()
 else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
+
+#
+# WRITE PRODUCTS TO FILE
+#
+
+with open(csv_file_path, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=headers)
+    writer.writeheader()
+
+    for product in products:
+        writer.writerow(product)
