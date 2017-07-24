@@ -78,6 +78,7 @@ def update_product():
     }
     print("CREATING A NEW PRODUCT HERE!", new_product)
     products.append(new_product)
+    
 def destroy_product():
     product_id = input("OK. Please specify the product's identifier: ")
     if product_id:
