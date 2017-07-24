@@ -28,7 +28,7 @@ with open(products_csv, "r") as csv_file:
 #
 
 def list_product():
-    print("""THERE ARE {0} PRODUCTS:""")
+    print("THERE ARE " + str(len(products)) + " PRODUCTS:")
     for product in products:
         print(" + ", product)
 
