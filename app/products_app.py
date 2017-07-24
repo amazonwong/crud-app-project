@@ -6,7 +6,9 @@ import csv
 
 products = []
 
-csv_file_path = "data/products.csv"
+products_csv = "data/products.csv"
+headers = ["id", "name", "aisle", "department", "price"]
+user_input_headers = [header for header in headers if header != "id"]
 
 def get_product_id(product):
     return int(product["id"])
@@ -19,11 +21,14 @@ def auto_incremented_id():
 # READ PRODUCTS FROM FILE
 #
 
-with open(csv_file_path, "r") as csv_file:
+with open(products_csv, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
         products.append(row)
 
+#
+# USER INPUT FUNCTIONS
+#
 
 def list_product():
     print("""THERE ARE " + str(len(products)) "PRODUCTS:""")
@@ -38,23 +43,12 @@ def show_product():
         else:
             print("COULDN'T FIND A PRODUCT WITH THIS IDENTIFIER", product)
 
-
 def create_product():
     print("OK. Please specify the product's information...")
-    product_id = input("id:")
-    product_name = input("name:")
-    product_aisle = input("aisle:")
-    product_department = input("department:")
-    product_price = input("price:")
-    new_product = {
-        "id": product_id,
-        "name": product_name,
-        "aisle": product_aisle,
-        "department": product_department,
-        "price": product_price
-    }
-    print("CREATING A NEW PRODUCT HERE!", new_product)
-    products.append(new_product)
+    product = {"id": auto_incremented_id() }
+    for header in user_input_headers:
+        product[header] = input("The '{0}' is: ".format(header))
+    print("CREATING A NEW PRODUCT HERE!", product)
 
 def update_product():
     product_id = input("OK. Please specify the product's identifier: ")
@@ -78,7 +72,7 @@ def update_product():
     }
     print("CREATING A NEW PRODUCT HERE!", new_product)
     products.append(new_product)
-    
+
 def destroy_product():
     product_id = input("OK. Please specify the product's identifier: ")
     if product_id:
