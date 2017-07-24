@@ -1,4 +1,4 @@
-# products_app
+# Products_app
 
 This app helps to list, show, create, update, destroy a csv products file.
 
