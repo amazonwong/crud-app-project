@@ -63,10 +63,11 @@ def update_product():
 
 def destroy_product():
     product_id = input("OK. Please specify the product's identifier: ")
-    if product_id:
-        print("DESTROYING A PRODUCT HERE!")
+    product = [p for p in products if p["id"] == product_id][0]
+    if product:
+        print("DESTROYING A PRODUCT HERE!", product)
     else:
-        product_ids.append(int(product_id))
+        print("COULDN'T FIND A PRODUCT WITH THIS IDENTIFIER", product_id)
 
 #
 # INTRO MENU
