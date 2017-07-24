@@ -23,14 +23,7 @@ with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
         products.append(row)
-products = []
-
-csv_file_path = "data/products.csv"
-
-with open(csv_file_path, "r") as csv_file:
-    reader = csv.DictReader(csv_file)
-    for row in reader:
-        products.append(row)
+        
 
 def list_product():
     print("""THERE ARE " + str(len(products)) "PRODUCTS:""")
@@ -91,15 +84,6 @@ def destroy_product():
     else:
         product_ids.append(int(product_id))
 
-
-
-if chosen_operation == "List": list_product()
-elif chosen_operation == "Show": show_product()
-elif chosen_operation == "Create": create_product()
-elif chosen_operation == "Update": update_product
-elif chosen_operation == "Destroy": destroy_product
-else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
-
 #
 # INTRO MENU
 #
@@ -123,6 +107,15 @@ menu = """There are {0} products in the database. Please select an operation:
 
 chosen_operation = input(menu)
 chosen_operation = chosen_operation.title()
+
+
+if chosen_operation == "List": list_product()
+elif chosen_operation == "Show": show_product()
+elif chosen_operation == "Create": create_product()
+elif chosen_operation == "Update": update_product
+elif chosen_operation == "Destroy": destroy_product
+else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
+
 
 
 # example of manipulating/changing the products list
