@@ -1,7 +1,4 @@
 # CRUD APP PROJECT
-
-# READ PRODUCTS CSV
-import operator
 import csv
 
 products = []
@@ -23,23 +20,23 @@ def auto_incremented_id():
 
 with open(products_csv, "r") as csv_file:
     reader = csv.DictReader(csv_file)
-    for row in reader:
-        products.append(row)
+    for ordered_dict in reader:
+        products.append(dict(ordered_dict))
 
 #
 # USER INPUT FUNCTIONS
 #
 
 def list_product():
-    print("""THERE ARE " + str(len(products)) "PRODUCTS:""")
+    print("""THERE ARE {0} PRODUCTS:""")
     for product in products:
-        print(product)
+        print(" + ", product)
 
 def show_product():
         product_id = input("OK. Please specify the product's identifier: ")
         product = [p for p in products if p["id"] == product_id][0]
         if product_id:
-            print("SHOWING A PRODUCT HERE!", product)
+            print("SHOWING A PRODUCT HERE!" + "\n", product)
         else:
             print("COULDN'T FIND A PRODUCT WITH THIS IDENTIFIER", product)
 
@@ -66,6 +63,7 @@ def destroy_product():
     product = [p for p in products if p["id"] == product_id][0]
     if product:
         print("DESTROYING A PRODUCT HERE!", product)
+        del products[products.index(product)]
     else:
         print("COULDN'T FIND A PRODUCT WITH THIS IDENTIFIER", product_id)
 
@@ -97,20 +95,17 @@ chosen_operation = chosen_operation.title()
 if chosen_operation == "List": list_product()
 elif chosen_operation == "Show": show_product()
 elif chosen_operation == "Create": create_product()
-elif chosen_operation == "Update": update_product
-elif chosen_operation == "Destroy": destroy_product
+elif chosen_operation == "Update": update_produc()
+elif chosen_operation == "Destroy": destroy_product()
 else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
 
+#
+# WRITE PRODUCTS TO FILE
+#
 
+with open(products_csv, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=headers)
+    writer.writeheader()
 
-# example of manipulating/changing the products list
-#example_new_product = {"id": 100, "name": "New Item", "aisle": "snacks", "department": "snacks", "price":1.99}
-#products.append(example_new_product)
-
-
-#other_path = "data/other_products.csv"
-#with open(other_path, "w") as csv_file:
-    #writer = csv.DictWriter(csv_file, fieldnames=["id","name","aisle","department","price"])
-    #writer.writeheader() # uses fieldnames set above
-    #for product in products:
-        #writer.writerow(product)
+    for product in products:
+        writer.writerow(product)
