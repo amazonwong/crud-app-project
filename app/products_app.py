@@ -23,7 +23,7 @@ with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
         products.append(row)
-        
+
 
 def list_product():
     print("""THERE ARE " + str(len(products)) "PRODUCTS:""")
@@ -32,10 +32,11 @@ def list_product():
 
 def show_product():
         product_id = input("OK. Please specify the product's identifier: ")
+        product = [p for p in products if p["id"] == product_id][0]
         if product_id:
-            print("SHOWING A PRODUCT HERE!")
+            print("SHOWING A PRODUCT HERE!", product)
         else:
-            product_ids.append(int(product_id))
+            print("COULDN'T FIND A PRODUCT WITH THIS IDENTIFIER", product)
 
 
 def create_product():
