@@ -1,6 +1,6 @@
-# Name of Your App
+# products_app
 
-Some description or other info about what the app does.
+This app helps to list, show, create, update, destroy a csv products file.
 
 ## Installation
 

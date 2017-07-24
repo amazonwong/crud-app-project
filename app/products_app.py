@@ -3,7 +3,7 @@ import csv
 
 products = []
 
-products_csv = "data/products.csv"
+csv_file_path = "data/products.csv"
 headers = ["id", "name", "aisle", "department", "price"]
 user_input_headers = [header for header in headers if header != "id"]
 
@@ -18,10 +18,21 @@ def auto_incremented_id():
 # READ PRODUCTS FROM FILE
 #
 
-with open(products_csv, "r") as csv_file:
+with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for ordered_dict in reader:
         products.append(dict(ordered_dict))
+        
+#
+# WRITE PRODUCTS TO FILE
+#
+
+with open(csv_file_path, "w") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=headers)
+    writer.writeheader()
+
+    for product in products:
+        writer.writerow(product)
 
 #
 # USER INPUT FUNCTIONS
@@ -45,7 +56,8 @@ def create_product():
     product = {"id": auto_incremented_id() }
     for header in user_input_headers:
         product[header] = input("The '{0}' is: ".format(header))
-    print("CREATING A NEW PRODUCT HERE!", product)
+    print("CREATING A NEW PRODUCT HERE!" + "\n", product)
+    products.append(product)
 
 def update_product():
     product_id = input("OK. Please specify the product's identifier: ")
@@ -98,14 +110,3 @@ elif chosen_operation == "Create": create_product()
 elif chosen_operation == "Update": update_produc()
 elif chosen_operation == "Destroy": destroy_product()
 else: print("OOPS. PLEASE CHOOSE ONE OF THE RECOGNIZED OPERATIONS.")
-
-#
-# WRITE PRODUCTS TO FILE
-#
-
-with open(products_csv, "w") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=headers)
-    writer.writeheader()
-
-    for product in products:
-        writer.writerow(product)
