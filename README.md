@@ -4,6 +4,8 @@ This app helps to list, show, create, update, destroy a csv products file.
 
 ## Installation
 
+pip3 install pytest
+
 Download the source code:
 
 ```shell
@@ -15,6 +17,14 @@ Finally, download the [example `products.csv` file](https://raw.githubuserconten
 
 ## Usage
 
+To run
+
 ```shell
 python app/products_app.py
 ```
+
+To test
+
+```shell
+pytest
+```app/__init__.py
